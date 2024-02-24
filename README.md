@@ -12,12 +12,16 @@
 
 >Cualquiera sea tu sistema operativo, vas a necesitar una terminal
 > <details>
+>
 > <summary>Windows</summary>
-> tocamos la `tecla de windows + R` e ingresamos `CMD` apretamos enter
+>
+> Tocamos la `tecla de windows + R` e ingresamos `CMD` apretamos enter
+>
 ></details>
 >
 ><details>
 ><summary>MAC OS</summary> 
+>
 >1. Abrimos la carpeta `Applications/Utilities/` y buscamos la aplicacion `Terminal` 
 >2. Abrimos el launchpad (atajo de teclado F4) y escribimos `Terminal` apretamos enter
 ></details>
@@ -60,7 +64,7 @@ Para conectar via SSH vamos a necesitar el nombre de usuario de la raspberry, el
 Para instalar las aplicaciones necesarias sin romper el sistema vamos a necesitar actualizar el sistema
 >Actualizamos el sistema
 >
->```bash
+>```console
 >sudo apt update && sudo apt upgrade -y
 >```
 
@@ -78,7 +82,7 @@ Para instalar las aplicaciones necesarias sin romper el sistema vamos a necesita
 > Instalamos dnsmasq (encargado de asignar ip a las pc’s conectadas a la raspberry, asi evitamos asignar una ip estatica a la pc con la que necesitamos chequear).
 > 
 > 
-> ```yaml
+> ```console
 > sudo apt install dnsmasq
 > ```
 > 
@@ -123,13 +127,13 @@ Para instalar las aplicaciones necesarias sin romper el sistema vamos a necesita
 >
 >- Instalamos gphoto2
 >
->```bash
+>```console
 >sudo apt install gphoto2
 >```
 >
 >- Chequeamos que gphoto2 este instalado correctamente
 >
->```bash
+>```console
 >gphoto2 --auto-detect
 >```
 >
@@ -143,7 +147,7 @@ Para instalar las aplicaciones necesarias sin romper el sistema vamos a necesita
 <summary>Chequear numeros de disparos</summary> 
 
 >
->```bash
+>```console
 >gphoto2 --get-config /main/status/shuttercounter
 >```
 >
@@ -151,15 +155,19 @@ Para instalar las aplicaciones necesarias sin romper el sistema vamos a necesita
 >
 >la camara no fue encontrada
 >
->`**** Error: No camera found. ****`
+>```yaml
+>**** Error: No camera found. ****
+>```
 >
 >El valor de “CURRENT” es el numero de disparos
 >
->`**Label: Shutter Counter
+>``` yaml
+>Label: Shutter Counter
 >Readonly: 0
 >Type: TEXT
 >CURRENT: 20245
->END**`
+>END
+>```
 >
 
 </details>
