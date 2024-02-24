@@ -76,7 +76,7 @@ sudo apt install gphoto2
 gphoto2 --auto-detect
 ```
 
-![Respuesta de `gphoto2 --auto-detect`  si hay una camara conectada aparece el modelo despues de la linea de guiones](./images/shuttercount.jpg)
+![Respuesta de `gphoto2 --auto-detect`  si hay una camara conectada aparece el modelo despues de la linea de guiones](./images/shuttercount.png)
 Respuesta de `gphoto2 --auto-detect`  si hay una camara conectada aparece el modelo despues de la linea de guiones
 
 ---
