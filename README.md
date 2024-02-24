@@ -8,6 +8,65 @@
 ## Step by step:
 
 <details>
+<summary>terminal/consola/cmd/powershell</summary>
+
+>Cualquiera sea tu sistema operativo, vas a necesitar una terminal
+> <details>
+> <summary>Windows</summary>
+> tocamos la `tecla de windows + R` e ingresamos `CMD` apretamos enter
+></details>
+>
+><details>
+><summary>MAC OS</summary> 
+>1. Abrimos la carpeta `Applications/Utilities/` y buscamos la aplicacion `Terminal` 
+>2. Abrimos el launchpad (atajo de teclado F4) y escribimos `Terminal` apretamos enter
+></details>
+><details>
+><summary>Linux</summary> 
+>
+> Hay varias formas de abrir una terminal en linux segun el Desktop Enviroment, en gnome:
+>- Abrimos el menu de aplicaciones via `Activities`(arriba a la derecha) y buscamos la aplicacion `Terminal` 
+>
+></details>
+
+
+
+
+
+</details>
+
+
+<details>
+<summary>Conexion a la raspberry</summary>
+ 
+### Conexion via SSH
+
+Para conectar via SSH vamos a necesitar el nombre de usuario de la raspberry, el usuario por defecto es `pi` pero puede ser cambiado en la instalacion, tambien vamos a necesitar la direccion de la raspberry en la red y tenemos dos opciones para esto:
+1. __Via ip__: Si todavia no se configuro una ip estatica, vamos a necesitar un programa como `angry ip` y vamos a chequear por un dispositivo con el puerto `22` abierto(en `angry ip` podes configurar la busqueda de puertos especificos en `preferencias->puertos->seleccion de puertos` agregamos `,22` a la lista.)
+2. __via nombre de dominio__: el nombre de dominio por defecto es "raspberry" pero se puede cambiar en la instalacion, vamos a usar `nombrededominio.local` (por defecto seria `raspberry.local`)
+
+>estos serian los comandos a ejecutar si los valores estan por defecto
+>| | via nombre de dominio  | via ip |
+>|---| ------------- | ------------- |
+>|comando|` ssh pi@raspberry.local  `|` ssh pi@192.168.0.211  `|
+>
+>Nos va a pedir la contraseña del usuario de la raspberry
+>una vez la conexion este establecida vamos a tener esta linea a la izquierda del input de la consola `pi@raspberrypi:~ $ `
+</details>
+
+<details>
+<summary>Actualizacion del sistema</summary>
+ 
+Para instalar las aplicaciones necesarias sin romper el sistema vamos a necesitar actualizar el sistema
+>Actualizamos el sistema
+>
+>```bash
+>sudo apt update && sudo apt upgrade -y
+>```
+
+</details>
+
+<details>
 
 <summary> Configuracion del sistema (IP y Asignaciones de IP)</summary>
 
@@ -37,8 +96,9 @@
 ### IP estatica y fallback:
 
 > Modificamos el archivo de configuracion de ip con el comando
-`sudo nano /etc/dhcpcd.conf` 
-Al final del archivo necesitamos esta configuracion, se encarga de general un fallback a ip estatica cuando la raspberry esta conectada directamente a una pc (sin una red).
+`sudo nano /etc/dhcpcd.conf`
+> 
+>Al final del archivo necesitamos esta configuracion, se encarga de general un fallback a ip estatica cuando la raspberry esta conectada directamente a una pc (sin una red).
 > 
 > 
 > ```yaml
@@ -51,7 +111,7 @@ Al final del archivo necesitamos esta configuracion, se encarga de general un fa
 > 
 > ```
 >
->Aunque no es recomendable conectar la raspberry a una red con un servidor DHCP(router), es una buena solucion por si necesitamos actualizar la raspberry
+>Aunque no es recomendable conectar la raspberry configurada como servidor DHCP a una red con otro servidor DHCP(router), es una buena solucion por si necesitamos actualizar la raspberry
 >
 
 </details>
@@ -60,12 +120,6 @@ Al final del archivo necesitamos esta configuracion, se encarga de general un fa
 
  <summary>Instalacion de gphoto2 (comuncacion con camara)</summary> 
   
->
->- Actualizamos el sistema
->
->```bash
->sudo apt update && sudo apt upgrade -y
->```
 >
 >- Instalamos gphoto2
 >
