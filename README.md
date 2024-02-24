@@ -8,8 +8,23 @@
 ## Step by step:
 
 <details>
-<summary>terminal/consola/cmd/powershell</summary>
+<summary>Uso rapido con raspberry ya configurada</summary>
+ 
+- Conectamos la raspberry a un USB de la pc para darle energia
+- Conectamos el cable de red directamente desde la raspberry a la pc
+- Conectamos la camara por usb a la raspberry
+- Encendemos la camara
+- ejecutamos el siguiente comando remplazando usuario por el usuario de la raspberry e ip por la ip o hostname de la raspberry, si esta configurada como esta guia, el usuario `pi` y la ip `192.168.0.211`
+```console
+ssh usuario@ip 'gphoto2 --get-config /main/status/shuttercounter'
+```
+- Si devuelve un error: `**** Error: No camera found. ****`, podes probar apagar la camara y volverla a prender, darle un segundo para que conecte y ejecutar el comando, aveces las camaras depues de un rato dejan de responder a las peticiones de USB
 
+</details>
+
+<details>
+<summary>terminal/consola/cmd/powershell</summary>
+ 
 >Cualquiera sea tu sistema operativo, vas a necesitar una terminal
 > <details>
 >
