@@ -7,14 +7,12 @@
 
 ## Step by step:
 
----
+<details>
 
-### Configuracion del sistema (IP y Asignaciones de IP)
+<summary> Configuracion del sistema (IP y Asignaciones de IP)</summary>
 
-<aside>
-⚠️ Para que estos cambios tomen efecto se debe reiniciar el sistema `sudo reboot`
 
-</aside>
+## ⚠️ Para que estos cambios tomen efecto se debe reiniciar el sistema `sudo reboot`
 
 ### Asignar ip a pc conectada directamente
 
@@ -34,13 +32,13 @@
 > bogus-priv
 > dhcp-range=192.168.0.100,192.168.0.200,255.255.255.0,12h
 > ```
-> 
+>
 
 ### IP estatica y fallback:
 
 > Modificamos el archivo de configuracion de ip con el comando
 `sudo nano /etc/dhcpcd.conf` 
-Al final del archivo necesitamos esta configuracion, se encarga de general un fallback a ip estatica cuando la raspberry esta conectada directamente a una pc (sin una red), aunque no es recomendable conectar la raspberry a una red con un servidor DHCP(router), es una buena solucion por si necesitamos actualizar la raspberry
+Al final del archivo necesitamos esta configuracion, se encarga de general un fallback a ip estatica cuando la raspberry esta conectada directamente a una pc (sin una red).
 > 
 > 
 > ```yaml
@@ -52,51 +50,62 @@ Al final del archivo necesitamos esta configuracion, se encarga de general un fa
 > static domain_name_servers=192.168.1.211
 > 
 > ```
-> 
+>
+>Aunque no es recomendable conectar la raspberry a una red con un servidor DHCP(router), es una buena solucion por si necesitamos actualizar la raspberry
+>
+
+</details>
+
+<details>
+
+ <summary>Instalacion de gphoto2 (comuncacion con camara)</summary> 
+  
+>
+>- Actualizamos el sistema
+>
+>```bash
+>sudo apt update && sudo apt upgrade -y
+>```
+>
+>- Instalamos gphoto2
+>
+>```bash
+>sudo apt install gphoto2
+>```
+>
+>- Chequeamos que gphoto2 este instalado correctamente
+>
+>```bash
+>gphoto2 --auto-detect
+>```
+>
+>![Respuesta de `gphoto2 --auto-detect`  si hay una camara conectada aparece el modelo despues de la linea de guiones](./images/shuttercount.png)
+>
+>Respuesta de `gphoto2 --auto-detect`  si hay una camara conectada aparece el modelo despues de la linea de guiones
 
 ---
+</details><details>
 
-### Instalacion de gphoto2 (comuncacion con camara)
+<summary>Chequear numeros de disparos</summary> 
 
-- Actualizamos el sistema
+>
+>```bash
+>gphoto2 --get-config /main/status/shuttercounter
+>```
+>
+>Podemos tener dos tipos de salidas:
+>
+>la camara no fue encontrada
+>
+>`**** Error: No camera found. ****`
+>
+>El valor de “CURRENT” es el numero de disparos
+>
+>`**Label: Shutter Counter
+>Readonly: 0
+>Type: TEXT
+>CURRENT: 20245
+>END**`
+>
 
-```bash
-sudo apt update && sudo apt upgrade -y
-```
-
-- Instalamos gphoto2
-
-```bash
-sudo apt install gphoto2
-```
-
-- Chequeamos que gphoto2 este instalado correctamente
-
-```bash
-gphoto2 --auto-detect
-```
-
-![Respuesta de `gphoto2 --auto-detect`  si hay una camara conectada aparece el modelo despues de la linea de guiones](./images/shuttercount.png)
-Respuesta de `gphoto2 --auto-detect`  si hay una camara conectada aparece el modelo despues de la linea de guiones
-
----
-
-### Chequear numeros de disparos
-
-```bash
-gphoto2 --get-config /main/status/shuttercounter
-```
-
-Podemos tener dos tipos de salidas:
-
-la camara no fue encontrada
-
-`**** Error: No camera found. ****`
-
-El valor de “CURRENT” es el numero de disparos
-
-`**Label: Shutter Counter
-Readonly: 0
-Type: TEXT
-CURRENT: 20245
-END**`
+</details>
